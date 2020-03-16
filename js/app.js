@@ -5,19 +5,22 @@ let comptesUtilisateur = [
     {email: 'fallou@example.com', password: 'ddd'},
 ]
 
-document.getElementById('submit').onclick = function() {
-    email = document.getElementById('email').value
-    password = document.getElementById('password').value
-    isTrue = false
-    comptesUtilisateur.forEach(element => {
-
-        if ( element.email == email && element.password == password ) {
-            isTrue = true
+$( "#submit" ).click(function() {
+    email =  $('#email').val();
+    password = $('#password').val();
+    if(email.length == 0 || password.length==0){
+        alert('Email/Password required')
+       
+    }else{
+        element= comptesUtilisateur.find(function(element)  {
+            return element.email == email && element.password == password ;
+            
+        });
+        if(element == undefined){
+            alert('credentials not valid')
+        }else{
+            alert("you're log in")
         }
-    });
-    if (isTrue) {
-        alert("you're log in")
-    } else {
-        alert("credentials not valid")
     }
-}
+   
+  });
